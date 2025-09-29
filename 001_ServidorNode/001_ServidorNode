@@ -1,0 +1,48 @@
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => { 
+    res.send('<h1>Bem vindo ao meu segundo servidor node.js!</h1>')
+})
+
+app.get('/produtos', (req, res) => {
+    res.send('<h1>Produtos</h1><p>Lista de produtos</p>')
+const produtos = ['Notebook', 'Mouse', 'Teclado',];
+const valor = [2500, 150, 200];
+})
+
+app.get('/produto/:id', (req, res) => {
+    const id = req.params.id;
+    const produtoSel = produtos[id];
+    if (produtoSel === undefined) {
+        res.send ('Produto não encontrado!')
+    }else{
+ res.send(`Você esta visualizando o produto de id ${id} que é ${produtoSel}`);
+}
+
+
+})
+
+app.get('/soma/:n1/:n2', (req, res) => {
+  const n1 = Number (req.params.n1);
+    const n2 = Number (req.params.n2);
+    const resultado = n1 + n2;
+    res.send(` ${n1} + ${n2} é igual a ${resultado}`);
+})
+app.get('/menu', (req, res) => {
+ let html = `
+ <h1>Menu</h1>
+    <a heref="/">Principal</a> <br>
+    <a heref="/produtos">Produtos</a> <br>
+    <a heref="/produto/1">Produto1</a> <br>
+    <a heref="/produto/7">Produto invalido</a> <br>
+    <a heref="/soma/10/5">Soma</a> <br>
+`;
+res.send(html);
+})
+
+
+const porta = 3000;
+app.listen(porta, () => {
+    console.log(`Servidor rodando em http://localhost:${porta}`);
+});

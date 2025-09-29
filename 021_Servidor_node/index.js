@@ -53,6 +53,7 @@ app.get('/menu', (req, res) => {
  <a heref="/usuarios/1">Usuario1</a> <br>
  <a heref="/usuario/7">Usuario invalido</a> <br>
  <a heref="/soma/10/5">Soma</a> <br>
+ 
 `;
 res.send(html);
 })
